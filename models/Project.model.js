@@ -4,25 +4,31 @@ const ProjectSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      required: [true, 'Es necesario introducir un nombre de Proyecto']
     },
     description: {
       type: String,
+      required: [true, 'Es necesario introducir la descripción del Proyecto']
     },
     profileNeeded: {
       type: String,
     },
     startDate: {
-      type: String,
+      type: Date,
+      default: Date.now,
     },
     endDate: {
-      type: String,
+      type: Date,
     },
     status: {
       type: String,
+      enum: ["Starting", "In progress", "Pending", "Done"],
     },
-    reward: {
-      type: String,
-    }, 
+    // creatorId: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     required: [true],
+    // }
   }
 )
 
