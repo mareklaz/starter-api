@@ -24,11 +24,16 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
       enum: ["Starting", "In progress", "Pending", "Done"],
     },
-    // creatorId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User',
-    //     required: [true],
-    // }
+    creatorId: {
+      type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true],
+    },
+    collaboratorId: {
+      type: [mongoose.Schema.Types.ObjectId],
+        ref: 'User',
+        required: [true],
+    }
   }
 )
 

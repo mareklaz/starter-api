@@ -23,3 +23,10 @@ module.exports.create = (req, res, next) => {
     .then((user) => res.status(201).json(user))
     .catch(next);
 };
+
+module.exports.delete = (req, res, next) => {
+  const { id } = req.params;
+  User.findByIdAndDelete(id)
+    .then((user) => res.status(204).json(user))
+    .catch(next);
+};

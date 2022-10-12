@@ -12,11 +12,13 @@ router.get('/', (req, res, next) => {
 router.get('/users', userController.list);
 router.post('/users', userController.create);
 router.get('/users/:id', userController.detail);
+router.delete('/users/:id', userController.delete);
 
 // Projects
 
 router.get('/projects', projectController.list);
 router.post('/projects', projectController.create);
 router.get('/projects/:id', projectController.detail);
+router.delete('/projects/:id', projectController.delete);
 
 module.exports = router;
