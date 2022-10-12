@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const userController = require('../controller/user.controller');
-const projectController = require('../controller/project.controller');
+const userController = require('../controllers/user.controller');
+const projectController = require('../controllers/project.controller');
 
 router.get('/', (req, res, next) => {
   res.json({ ok: true });
