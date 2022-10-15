@@ -30,3 +30,15 @@ module.exports.delete = (req, res, next) => {
     .then((user) => res.status(204).json(user))
     .catch(next);
 };
+
+module.exports.getCurrentUser = (req, res, next) => {
+  User.findById(req.currentUser)
+    .then((user) => {
+      if (!user) {
+        next(createError(404, "User not found"));
+      } else {
+        res.json(user);
+      }
+    })
+    .catch(next);
+};

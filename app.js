@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const createError = require("http-errors");
+const jwt = require('jsonwebtoken');
 
 require("./config/db.config");
 
@@ -38,8 +39,8 @@ app.use((error, req, res, next) => {
     error = createError(404, "Resource not found");
   } else if (error.message.includes("E11000")) {
     error = createError(400, "Already exists");
-  // } else if (error instanceof jwt.JsonWebTokenError) {
-  //   error = createError(401, error);
+  } else if (error instanceof jwt.JsonWebTokenError) {
+    error = createError(401, error);
   } else if (!error.status) {
     error = createError(500, error);
   }
