@@ -1,6 +1,9 @@
+require("dotenv").config();
+
 const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User.model");
+const JWT_SECRET = '1988'
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -26,7 +29,7 @@ module.exports.login = (req, res, next) => {
                   {
                     id: user.id,
                   },
-                  "Super secret",
+                  JWT_SECRET,
                   {
                     expiresIn: "1h",
                   }

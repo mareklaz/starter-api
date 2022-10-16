@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const createError = require("http-errors");
+const JWT_SECRET = '1988'
 
 module.exports.isAuthenticated = (req, res, next) => {
   const authorization = req.header("Authorization");
@@ -11,7 +12,7 @@ module.exports.isAuthenticated = (req, res, next) => {
       if (token) {
         // el token es valido?
 
-        jwt.verify(token, "SuperSecreto", (err, decodedToken) => {
+        jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
           if (err) {
             // Error por secreto incorrecto o por expiración, etc.
             next(err);

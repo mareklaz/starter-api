@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use(logger("dev"));
 app.use(express.json()); // Nos permite usar el req.body
 
-const routes = require("./routes/router.config");
+const routes = require("./routes/routes.config");
 app.use("/api", routes);
 
 /* Handle Errors */

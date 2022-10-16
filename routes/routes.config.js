@@ -12,11 +12,11 @@ router.get("/", (req, res, next) => {
 router.post("/login", authController.login);
 
 // Users
-router.get('/users/me', authMiddleware.isAuthenticated, userController.getCurrentUser)
 router.get("/users", userController.list);
 router.post("/users", userController.create);
 router.get("/users/:id", userController.detail);
 router.delete("/users/:id", userController.delete);
+router.get('/users/me', authMiddleware.isAuthenticated, userController.getCurrentUser)
 
 // Projects
 router.get("/projects", projectController.list);
