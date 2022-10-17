@@ -32,6 +32,7 @@ module.exports.delete = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
+  console.log(req.currentUser)
   User.findById(req.currentUser)
     .then((user) => {
       if (!user) {

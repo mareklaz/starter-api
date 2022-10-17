@@ -34,7 +34,6 @@ module.exports.login = (req, res, next) => {
                     expiresIn: "1h",
                   }
                 ); // Firmar y enviar el token jwt
-
                 res.json({ accessToken: token });
               }
             });

@@ -10,11 +10,11 @@ const UserSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: [true, "Es necesario introducir tu nombre"],
+      required: [false, "Es necesario introducir tu nombre"],
     },
     lastName: {
       type: String,
-      required: [true, "Es necesario introducir tu apellido"],
+      required: [false, "Es necesario introducir tu apellido"],
     },
     userName: {
       type: String,
@@ -46,6 +46,10 @@ const UserSchema = new mongoose.Schema(
     about: {
       type: String,
     },
+    userImg: {
+      type: String,
+      default: 'https://cdn-icons-png.flaticon.com/512/2922/2922717.png'
+    }
   },
   {
     toJSON: {

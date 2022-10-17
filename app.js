@@ -5,19 +5,19 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const createError = require("http-errors");
 const jwt = require('jsonwebtoken');
-
+const cors = require('cors')
 require("./config/db.config");
 
 const app = express();
-
+app.use(cors())
 // CORS middleware
-app.use((req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.set("Access-Control-Allow-Headers", "content-type");
-  res.set("Access-Control-Allow-Methods", "*");
-  // res.set("Access-Control-Allow-Credentials", "true");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.set("Access-Control-Allow-Headers", "content-type");
+//   res.set("Access-Control-Allow-Methods", "*");
+//   res.set("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 
 app.use(logger("dev"));
 app.use(express.json()); // Nos permite usar el req.body

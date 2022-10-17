@@ -4,7 +4,6 @@ const JWT_SECRET = '1988'
 
 module.exports.isAuthenticated = (req, res, next) => {
   const authorization = req.header("Authorization");
-
   if (authorization) {
     const [type, token] = authorization.split(" ");
 
@@ -17,6 +16,7 @@ module.exports.isAuthenticated = (req, res, next) => {
             // Error por secreto incorrecto o por expiración, etc.
             next(err);
           } else {
+            console.log(decodedToken)
             req.currentUser = decodedToken.id;
             next(); // Todo ha ido bien!
           }
