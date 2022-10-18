@@ -48,7 +48,7 @@ const UserSchema = new mongoose.Schema(
     },
     userImg: {
       type: String,
-      default: 'https://cdn-icons-png.flaticon.com/512/2922/2922717.png'
+      default: 'https://cdn-icons-png.flaticon.com/512/2922/2922512.png'
     }
   },
   {
