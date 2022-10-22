@@ -1,5 +1,5 @@
-const User = require("../models/User.model");
-const createError = require("http-errors");
+const User = require('../models/User.model');
+const createError = require('http-errors');
 
 module.exports.list = (req, res, next) => {
   User.find()
@@ -31,12 +31,21 @@ module.exports.delete = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.update = (req, res, next) => {
+  const { id } = req.body;
+  User.findOneAndUpdate(id, req.body, { new: true })
+    .then((user) => {
+      res.status(204).send();
+    })
+    .catch(next);
+};
+
 module.exports.getCurrentUser = (req, res, next) => {
-  console.log(req.currentUser)
+  console.log(req.currentUser);
   User.findById(req.currentUser)
     .then((user) => {
       if (!user) {
-        next(createError(404, "User not found"));
+        next(createError(404, 'User not found'));
       } else {
         res.json(user);
       }
