@@ -1,5 +1,6 @@
 const User = require('../models/User.model');
 const createError = require('http-errors');
+const Like = require('../models/Likes.model');
 
 module.exports.list = (req, res, next) => {
   User.find()
@@ -31,6 +32,12 @@ module.exports.delete = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.deleteAllUsers = (req, res, next) => {
+  User.remove({})
+    .then((user) => res.status(204).json(user))
+    .catch(next);
+};
+
 module.exports.update = (req, res, next) => {
   const { id } = req.body;
   User.findOneAndUpdate(id, req.body, { new: true })
@@ -41,7 +48,6 @@ module.exports.update = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
-  console.log(req.currentUser);
   User.findById(req.currentUser)
     .then((user) => {
       if (!user) {
@@ -50,5 +56,33 @@ module.exports.getCurrentUser = (req, res, next) => {
         res.json(user);
       }
     })
+    .catch(next);
+};
+
+// module.exports.getLikes = (req, res, next) => {
+//   const { userId, projectId } = req.body;
+//   console.log(userId, projectId);
+
+//   Like.findOne({ userId: userId, projectId: projectId })
+//     .then((like) => {
+//       res.json(like);
+//     })
+//     .catch(next);
+// };
+
+module.exports.getLikes = (req, res, next) => {
+  Like.find()
+    .then((like) => {
+      res.json(like);
+    })
+    .catch(next);
+};
+
+module.exports.addLikes = (req, res, next) => {
+  const { userId, projectId } = req.body;
+  console.log(userId, projectId);
+
+  Like.create(req.body)
+    .then((like) => res.status(201).json(like))
     .catch(next);
 };

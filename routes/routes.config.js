@@ -21,6 +21,7 @@ router.get(
 router.post('/users', userController.create);
 router.get('/users/:id', userController.detail);
 router.delete('/users/:id', userController.delete);
+router.delete('/users/', userController.deleteAllUsers);
 router.put('/users', userController.update);
 
 // Projects
@@ -28,6 +29,12 @@ router.get('/projects', projectController.list);
 router.post('/projects', projectController.create);
 router.get('/projects/:id', projectController.detail);
 router.delete('/projects/:id', projectController.delete);
-router.patch('/projects/suscribe/:id', projectController.collaborate);
+router.delete('/projects/', projectController.deleteAllProjects);
+router.put('/projects/suscribe', projectController.addCollaborator);
+router.put('/projects/unsuscribe', projectController.removeCollaborator);
+
+// Likes
+router.get('/projects/likes', userController.getLikes);
+router.post('/projects/likes', userController.addLikes);
 
 module.exports = router;
