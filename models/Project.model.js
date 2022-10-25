@@ -21,7 +21,7 @@ const ProjectSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Starting', 'In progress', 'Pending', 'Done'],
+    enum: ['Inicio', 'En progreso', 'Pendiente', 'Finalizado'],
   },
   creatorId: {
     type: mongoose.Schema.Types.ObjectId,
