@@ -1,14 +1,14 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const createError = require("http-errors");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User.model");
-const JWT_SECRET = '1988'
+const createError = require('http-errors');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User.model');
+const JWT_SECRET = '1988';
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
-  const LoginError = createError(401, "Email or password are not valid");
+  const LoginError = createError(401, 'Email or password are not valid');
 
   if (!email || !password) {
     // Campos requeridos
@@ -31,7 +31,7 @@ module.exports.login = (req, res, next) => {
                   },
                   JWT_SECRET,
                   {
-                    expiresIn: "1h",
+                    expiresIn: '1h',
                   }
                 ); // Firmar y enviar el token jwt
                 res.json({ accessToken: token });

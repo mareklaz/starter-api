@@ -3,7 +3,7 @@ const userController = require('../controllers/user.controller');
 const projectController = require('../controllers/project.controller');
 const authController = require('../controllers/auth.controller');
 const authMiddleware = require('../middleware/auth.middleware');
-
+const fileUploader = require('../config/cloudinary.config');
 router.get('/', (req, res, next) => {
   res.json({ ok: true });
 });
@@ -18,7 +18,7 @@ router.get(
   authMiddleware.isAuthenticated,
   userController.getCurrentUser
 );
-router.post('/users', userController.create);
+router.post('/users', fileUploader.single('image'), userController.create);
 router.get('/users/:id', userController.detail);
 router.delete('/users/:id', userController.delete);
 router.delete('/users/', userController.deleteAllUsers);

@@ -3,11 +3,14 @@ const mongoose = require('mongoose');
 const ProjectSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Es necesario introducir un nombre de Proyecto'],
+    required: [true, 'Back: Es necesario introducir un nombre de Proyecto'],
   },
   description: {
     type: String,
-    required: [true, 'Es necesario introducir la descripción del Proyecto'],
+    required: [
+      true,
+      'Back: Es necesario introducir la descripción del Proyecto',
+    ],
   },
   profileNeeded: {
     type: String,
@@ -18,6 +21,9 @@ const ProjectSchema = new mongoose.Schema({
   },
   endDate: {
     type: Date,
+  },
+  githubLink: {
+    type: String,
   },
   status: {
     type: String,
