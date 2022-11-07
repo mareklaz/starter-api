@@ -7,6 +7,7 @@ const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 require('./config/db.config');
+require('./config/db.config');
 
 const app = express();
 app.use(cors());

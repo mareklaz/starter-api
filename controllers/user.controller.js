@@ -20,9 +20,13 @@ module.exports.detail = (req, res, next) => {
 };
 
 module.exports.create = (req, res, next) => {
+  console.log('reqfile es ', req.file);
   if (req.file) {
+    console.log('entro');
     req.body.userImg = req.file.path;
   }
+
+  console.log('reqbody es ahora así: ', req.body);
 
   User.create(req.body)
     .then((user) => res.status(201).json(user))

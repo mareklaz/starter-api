@@ -1,9 +1,9 @@
 const router = require('express').Router();
+const fileUploader = require('../config/cloudinary.config');
 const userController = require('../controllers/user.controller');
 const projectController = require('../controllers/project.controller');
 const authController = require('../controllers/auth.controller');
 const authMiddleware = require('../middleware/auth.middleware');
-const fileUploader = require('../config/cloudinary.config');
 router.get('/', (req, res, next) => {
   res.json({ ok: true });
 });
