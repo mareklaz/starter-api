@@ -20,13 +20,11 @@ module.exports.detail = (req, res, next) => {
 };
 
 module.exports.create = (req, res, next) => {
-  console.log('reqfile es ', req.file);
   if (req.file) {
-    console.log('entro');
     req.body.userImg = req.file.path;
   }
 
-  console.log('reqbody es ahora así: ', req.body);
+  console.log('Usuario a crear: ', req.body);
 
   User.create(req.body)
     .then((user) => res.status(201).json(user))
@@ -50,6 +48,7 @@ module.exports.update = (req, res, next) => {
   const { id } = req.body;
   User.findOneAndUpdate(id, req.body, { new: true })
     .then((user) => {
+      console.log('usuario actualizado ', user);
       res.status(204).send();
     })
     .catch(next);

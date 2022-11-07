@@ -22,7 +22,7 @@ router.post('/users', fileUploader.single('image'), userController.create);
 router.get('/users/:id', userController.detail);
 router.delete('/users/:id', userController.delete);
 router.delete('/users/', userController.deleteAllUsers);
-router.put('/users', userController.update);
+router.patch('/users/update', userController.update);
 
 // Projects
 router.get('/projects', projectController.list);
