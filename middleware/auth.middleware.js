@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const jwt = require('jsonwebtoken');
 const createError = require('http-errors');
-const JWT_SECRET = '1988';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 module.exports.isAuthenticated = (req, res, next) => {
   const authorization = req.header('Authorization');

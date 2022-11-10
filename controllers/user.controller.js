@@ -1,6 +1,5 @@
 const User = require('../models/User.model');
 const createError = require('http-errors');
-const Like = require('../models/Likes.model');
 
 module.exports.list = (req, res, next) => {
   User.find()
@@ -23,33 +22,16 @@ module.exports.create = (req, res, next) => {
   if (req.file) {
     req.body.userImg = req.file.path;
   }
-
-  console.log('Usuario a crear: ', req.body);
-
   User.create(req.body)
     .then((user) => res.status(201).json(user))
     .catch(next);
 };
 
-module.exports.delete = (req, res, next) => {
-  const { id } = req.params;
-  User.findByIdAndDelete(id)
-    .then((user) => res.status(204).json(user))
-    .catch(next);
-};
-
-module.exports.deleteAllUsers = (req, res, next) => {
-  User.remove({})
-    .then((user) => res.status(204).json(user))
-    .catch(next);
-};
-
 module.exports.update = (req, res, next) => {
   const { id } = req.body;
-  User.findOneAndUpdate(id, req.body, { new: true })
+  User.findOneAndUpdate(id, req.body, { new: true, rawResult: true })
     .then((user) => {
-      console.log('usuario actualizado ', user);
-      res.status(204).send();
+      res.status(200).json(user);
     })
     .catch(next);
 };
@@ -66,30 +48,16 @@ module.exports.getCurrentUser = (req, res, next) => {
     .catch(next);
 };
 
-// module.exports.getLikes = (req, res, next) => {
-//   const { userId, projectId } = req.body;
-//   console.log(userId, projectId);
+module.exports.delete = (req, res, next) => {
+  const { id } = req.body;
 
-//   Like.findOne({ userId: userId, projectId: projectId })
-//     .then((like) => {
-//       res.json(like);
-//     })
-//     .catch(next);
-// };
-
-module.exports.getLikes = (req, res, next) => {
-  Like.find()
-    .then((like) => {
-      res.json(like);
-    })
+  User.findByIdAndDelete(id)
+    .then((user) => res.status(204).json(user))
     .catch(next);
 };
 
-module.exports.addLikes = (req, res, next) => {
-  const { userId, projectId } = req.body;
-  console.log(userId, projectId);
-
-  Like.create(req.body)
-    .then((like) => res.status(201).json(like))
+module.exports.deleteAllUsers = (req, res, next) => {
+  User.remove({})
+    .then((user) => res.status(204).json(user))
     .catch(next);
 };
