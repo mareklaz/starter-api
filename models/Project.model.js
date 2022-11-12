@@ -4,17 +4,14 @@ const ProjectSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Back: Es necesario introducir un nombre de Proyecto'],
+      required: [false, 'Back: Es necesario introducir un nombre de Proyecto'],
     },
     description: {
       type: String,
       required: [
-        true,
+        false,
         'Back: Es necesario introducir la descripción del Proyecto',
       ],
-    },
-    profileNeeded: {
-      type: [],
     },
     startDate: {
       type: Date,
@@ -34,7 +31,7 @@ const ProjectSchema = new mongoose.Schema(
     creatorId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: [false],
+      required: [true],
     },
   },
   {
