@@ -40,7 +40,7 @@ router.delete('/projects/:id', projectController.delete);
 
 // Collaboration
 
-router.get('/collaboration/', collaborationController.list);
+router.get('/collaboration', collaborationController.list);
 router.get('/collaboration/:id', collaborationController.detail);
 router.post('/collaboration/create', collaborationController.create);
 router.delete('/collaboration/delete', collaborationController.delete);

@@ -25,37 +25,41 @@ module.exports.detail = (req, res, next) => {
 
 module.exports.create = (req, res, next) => {
   const { userId, projectId } = req.body;
-  console.log(req.body);
-  Collaboration.create(req.body)
-    .then((collaboration) => res.status(200).json(collaboration))
+  Collaboration.find({
+    $and: [{ _userId: userId }, { _projectId: projectId }],
+  })
+    .then((result) => {
+      if (result.length > 0) {
+        console.log('encontrador', result);
+        res.json({ error: 'ya eres colaborador' });
+      } else {
+        console.log('entro');
+        return Collaboration.create(req.body).then((collaboration) =>
+          res.status(201).json(collaboration)
+        );
+      }
+    })
     .catch(next);
-
-  // Collaboration.find({ $and: [{ userId: userId }, { projectId: projectId }] })
-  // Collaboration.findOne({
-  //   $and: [{ userId: userId }, { projectId: projectId }],
-  // })
-  // Collaboration.findOne({
-  //   $and: [{ userId: userId, projectId: projectId }],
-  // })
-  //   .then((result) => {
-  //     if (result) {
-  //       console.log('encontrador', result);
-  //       res.json({ error: 'ya eres colaborador' });
-  //     } else {
-  //       return Collaboration.create(req.body).then((collaboration) =>
-  //         res.status(201).json(collaboration)
-  //       );
-  //     }
-  //   })
-  //   .catch(next);
 };
 
 module.exports.delete = (req, res, next) => {
   const { userId, projectId } = req.body;
   console.log('Para borrar ', req.body);
-  Collaboration.findOneAndDelete({
-    $and: [{ userId: userId }, { projectId: projectId }],
+  Collaboration.findOne({
+    $and: [{ _userId: userId }, { _projectId: projectId }],
   })
-    .then((collaboration) => res.status(204).json(collaboration))
+    .then((result) => {
+      console.log('Resultado', result);
+      if (result) {
+        Collaboration.findOneAndDelete({ _id: result._id })
+          .then((result) => res.status(204).json(result))
+          .catch(next);
+      } else {
+        console.log('entro');
+        return Collaboration.create(req.body).then((collaboration) =>
+          res.status(201).json(collaboration)
+        );
+      }
+    })
     .catch(next);
 };
