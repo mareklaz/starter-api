@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const fileUploader = require('../config/cloudinary.config');
 const userController = require('../controllers/user.controller');
-const projectController = require('../controllers/project.controller');
 const authController = require('../controllers/auth.controller');
+const projectController = require('../controllers/project.controller');
+const collaborationController = require('../controllers/collaboration.controller');
 const authMiddleware = require('../middleware/auth.middleware');
 
 router.get('/', (req, res, next) => {
@@ -34,9 +35,14 @@ router.delete('/users/delete-all', userController.deleteAllUsers);
 router.get('/projects', projectController.list);
 router.post('/projects', projectController.create);
 router.get('/projects/:id', projectController.detail);
-router.delete('/projects/:id', projectController.delete);
 router.delete('/projects/', projectController.deleteAllProjects);
-router.put('/projects/suscribe', projectController.addCollaborator);
-router.put('/projects/unsuscribe', projectController.removeCollaborator);
+router.delete('/projects/:id', projectController.delete);
+
+// Collaboration
+
+router.get('/collaboration/', collaborationController.list);
+router.get('/collaboration/:id', collaborationController.detail);
+router.post('/collaboration/create', collaborationController.create);
+router.delete('/collaboration/delete', collaborationController.delete);
 
 module.exports = router;

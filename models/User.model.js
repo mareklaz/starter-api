@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      unique: true,
+      // unique: true,
       required: [true, 'Es necesario introducir un e-mail'],
       match: [EMAIL_PATTERN, 'Es necesario introducir un e-mail válido'],
     },
@@ -50,11 +50,11 @@ const UserSchema = new mongoose.Schema(
     },
     githubLink: {
       type: String,
-      default: '',
+      default: 'https://github.com/',
     },
     linkedinLink: {
       type: String,
-      default: '',
+      default: 'https://linkedin.com/',
     },
   },
   {
