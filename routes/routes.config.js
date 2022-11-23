@@ -24,7 +24,7 @@ router.get('/users/:id', userController.detail);
 
 router.post(
   '/users/create-user',
-  fileUploader.single('image'),
+  // fileUploader.single('image'),
   userController.create
 );
 router.put('/users/update-user', userController.update);

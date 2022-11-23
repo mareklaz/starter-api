@@ -1,5 +1,4 @@
 const User = require('../models/User.model');
-const createError = require('http-errors');
 
 module.exports.list = (req, res, next) => {
   User.find()
@@ -22,6 +21,7 @@ module.exports.create = (req, res, next) => {
   if (req.file) {
     req.body.userImg = req.file.path;
   }
+  console.log('Llega REQ BODY', req.body);
   User.create(req.body)
     .then((user) => res.status(201).json(user))
     .catch(next);
