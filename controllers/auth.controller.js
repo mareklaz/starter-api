@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
-  const LoginError = createError(401, 'Email or password are not valid');
+  const LoginError = createError(401, 'Correo o contraseña incorrecta');
 
   if (!email || !password) {
     // Campos requeridos

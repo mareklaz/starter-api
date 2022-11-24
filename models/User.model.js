@@ -24,21 +24,22 @@ const UserSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      // unique: true,
-      required: [false, 'Es necesario introducir un e-mail'],
+      unique: true,
+      required: [true, 'Es necesario introducir un e-mail'],
       match: [EMAIL_PATTERN, 'Es necesario introducir un e-mail válido'],
     },
     password: {
       type: String,
-      required: [false, 'Es necesario introducir un password'],
+      required: [true, 'Es necesario introducir un password'],
       match: [PASSWORD_PATTERN, 'Es necesario introducir un password válido'],
       minlength: 3,
     },
-    // profile: {
-    //   type: String,
-    //   enum: ['Frontend', 'Backend', 'Fullstack', 'UX/UI', 'Data Analyst'],
-    //   required: [false, 'Es necesario elegir un perfil'],
-    // },
+    profile: {
+      type: String,
+      enum: ['Frontend', 'Backend', 'Fullstack', 'UX/UI', 'Data Analyst'],
+      required: [false, 'Es necesario elegir un perfil'],
+      defualt: 'Frontend',
+    },
     about: {
       type: String,
       required: [false, 'Es necesario elegir una breve descripción'],
