@@ -7,14 +7,14 @@ const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 require('./config/db.config');
+const routes = require('./routes/routes.config');
 
 const app = express();
 app.use(cors());
 
 app.use(logger('dev'));
-app.use(express.json()); // Nos permite usar el req.body
 
-const routes = require('./routes/routes.config');
+app.use(express.json()); // Nos permite usar el req.body
 app.use('/api', routes);
 
 /* Handle Errors */

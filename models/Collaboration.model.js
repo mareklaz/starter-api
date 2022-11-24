@@ -5,12 +5,12 @@ const CollaborationSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      require: [false, 'Es necesario tener un ID de Usuario'],
+      require: [true, 'Es necesario tener un ID de Usuario'],
     },
     projectId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Project',
-      require: [false, 'Es necesario tener un ID de Proyecto'],
+      require: [true, 'Es necesario tener un ID de Proyecto'],
     },
   },
   {

@@ -11,12 +11,10 @@ const UserSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: [false, 'Es necesario introducir tu nombre'],
-      default: '',
     },
     lastName: {
       type: String,
       required: [false, 'Es necesario introducir tu apellido'],
-      default: '',
     },
     userName: {
       type: String,
@@ -38,12 +36,14 @@ const UserSchema = new mongoose.Schema(
       type: String,
       enum: ['Frontend', 'Backend', 'Fullstack', 'UX/UI', 'Data Analyst'],
       required: [false, 'Es necesario elegir un perfil'],
+<<<<<<< HEAD
       defualt: 'Frontend',
+=======
+>>>>>>> c7863223dd434cbefcd6f8c7fd4607167dc3b5a7
     },
     about: {
       type: String,
       required: [false, 'Es necesario elegir una breve descripción'],
-      default: '',
     },
     userImg: {
       type: String,
@@ -51,11 +51,9 @@ const UserSchema = new mongoose.Schema(
     },
     githubLink: {
       type: String,
-      default: 'https://github.com/',
     },
     linkedinLink: {
       type: String,
-      default: 'https://linkedin.com/',
     },
   },
   {
